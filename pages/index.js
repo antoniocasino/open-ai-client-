@@ -8,6 +8,7 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
+    if(!textInput) return;
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
