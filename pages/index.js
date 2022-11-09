@@ -33,7 +33,7 @@ export default function Home() {
         <h3>Describe an image</h3>
         <form onSubmit={onSubmit}>
           <textarea type="text" rows="3" cols="40" name="text2img" 
-            placeholder="Enter a description for the img"         
+            placeholder="Enter a description text for an image. OpenAi will generate the image for you"         
             value={textInput}
             onChange={(e) => setTextInput(e.target.value)}
           />
