@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 
 export default function Home() {
   const [textInput, setTextInput] = useState("");
+  const [previous, setPreviuos] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -18,6 +19,7 @@ export default function Home() {
     });
     const data = await response.json();
     setResult(data.result);
+    setPreviuos(textInput);
     setTextInput("");
   }
 
@@ -39,6 +41,7 @@ export default function Home() {
           />
           <input type="submit" value="Generate images" />
         </form>
+        {!!result ? <h3 style={{color:"purple"}}>{previous}</h3> : null }
         <div className={styles.result}><img src={result}/></div>
       </main>
     </div>
