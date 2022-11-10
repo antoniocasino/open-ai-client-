@@ -34,7 +34,7 @@ export default function Sentiment() {
     
           <main className={styles.main}>
             <img src="/dog.png" className={styles.icon} />
-            <h3>Enter a text. OpenAi will evaluate how much aggressive the text is</h3>
+            <h3>Enter a text. OpenAi will evaluate how aggressive the text is</h3>
             <img src="/ita.jpg" className={styles.icon} />
             <h3>Insersci un testo. OpenAi valuterà quanto il testo è aggressivo</h3>
             <form onSubmit={onSubmit}>
