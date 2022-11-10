@@ -39,7 +39,7 @@ export default function Sentiment() {
             <h3>Insersci un testo. OpenAi valuterà quanto il testo è aggressivo</h3>
             <form onSubmit={onSubmit}>
               <textarea type="text center" rows="3" cols="40" name="text2img"
-                placeholder="Enter a text. OpenAi will evaluate how much aggressive the text is"         
+                placeholder="Enter a text. OpenAi will evaluate how aggressive the text is"         
                 value={textInput}
                 onChange={(e) => setTextInput(e.target.value)}
               />
