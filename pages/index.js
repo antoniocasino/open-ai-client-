@@ -34,7 +34,7 @@ export default function Home() {
         <img src="/dog.png" className={styles.icon} />
         <h3>Enter a description text for an image. OpenAi will generate the image for you :)</h3>
         <form onSubmit={onSubmit}>
-          <textarea type="text" rows="3" cols="40" name="text2img" 
+          <textarea type="text center" rows="3" cols="40" name="text2img"
             placeholder="Enter a description text for an image. OpenAi will generate the image for you"         
             value={textInput}
             onChange={(e) => setTextInput(e.target.value)}
