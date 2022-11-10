@@ -26,16 +26,18 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OpenAI Quickstart</title>
+        <title>OpenAI Image Generation</title>
         <link rel="icon" href="/dog.png" />
       </Head>
 
       <main className={styles.main}>
         <img src="/dog.png" className={styles.icon} />
         <h3>Enter a description text for an image. OpenAi will generate the image for you :)</h3>
+        <img src="/ita.jpg" className={styles.icon} />
+        <h3>Insersci un testo descrittivo per una immagine. OpenAi creerà l'immagine per te :)</h3>
         <form onSubmit={onSubmit}>
           <textarea type="text center" rows="3" cols="40" name="text2img"
-            placeholder="Enter a description text for an image. OpenAi will generate the image for you"         
+            placeholder="Enter a description text for an image"         
             value={textInput}
             onChange={(e) => setTextInput(e.target.value)}
           />
