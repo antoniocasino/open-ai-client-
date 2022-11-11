@@ -32,12 +32,12 @@ export default function Sentiment() {
           </Head>
     
           <main className={styles.main}>
-            <img src="/dog.png" className={styles.icon} />
+            <a href="/"><img src="/dog.png" className={styles.icon} /></a>
             <h3>Enter a text. OpenAi will evaluate how aggressive the text is</h3>
-            <img src="/ita.jpg" className={styles.icon} />
+            <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3>Insersci un testo. OpenAi valuterà quanto il testo è aggressivo</h3>
             <form onSubmit={onSubmit}>
-              <textarea type="text center" rows="3" cols="40" name="text2img"
+              <textarea type="text" rows="3" cols="40" name="text2img"
                 placeholder="Enter a text. OpenAi will evaluate how aggressive the text is"         
                 value={textInput}
                 onChange={(e) => setTextInput(e.target.value)}
@@ -51,7 +51,7 @@ export default function Sentiment() {
     );
    
     function display(result){
-        if(!!result && !!result.results.length){
+        if(!!result && !!result.results){
             let aggressive = result.results.flatMap(category=>Object.entries(category.category_scores)
                 .filter((key,value)=>{console.log(key); return key[1]>0.0005;}));
             if(!!aggressive.length){

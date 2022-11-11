@@ -31,9 +31,9 @@ export default function Conversation() {
           </Head>
     
           <main className={styles.main}>
-            <img src="/dog.png" className={styles.icon} />
+            <a href="/"><img src="/dog.png" className={styles.icon} /></a>
             <h3>Start a conversation with OpenAI</h3>
-            <img src="/ita.jpg" className={styles.icon} />
+            <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3>Inizia una conversazione con OpenAI</h3>
             <form onSubmit={onSubmit}>
               <textarea type="text center" rows="3" cols="40" name="text2img"
