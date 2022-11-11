@@ -18,8 +18,7 @@ export default function Sentiment() {
           body: JSON.stringify({ aggressiveText: textInput }),
         });
         const data = await response.json();
-        setResult(data.result);
-        console.log(data.result);
+        setResult(data.result);        
         setPreviuos(textInput);
         setTextInput("");
     }

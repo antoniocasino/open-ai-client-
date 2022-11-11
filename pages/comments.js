@@ -18,8 +18,7 @@ export default function Comments() {
           body: JSON.stringify({ text: textInput + "\n /* Here's what the above class is doing:" }),
         });
         const data = await response.json();
-        setResult(data.result);
-        console.log(data);      
+        setResult(data.result);         
     }
 
     return (
@@ -49,9 +48,7 @@ export default function Comments() {
    
     function display(result){
         if(!!result && !!result.choices){
-           let list = result.choices.map((el,index) => <li key={index}>{el.text}</li>);
-           console.log("list",list);
-           return <ol>{list}</ol>;
+           return result.choices.map((el,index) => <h4 key={index}><i>{el.text}</i></h4>);           
         }
         return null;
     }
