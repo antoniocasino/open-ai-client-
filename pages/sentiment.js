@@ -56,7 +56,7 @@ export default function Sentiment() {
             let aggressive = result.results.flatMap(category=>Object.entries(category.category_scores)
                 .filter((key,value)=>{console.log(key); return key[1]>0.0005;}));
             if(!!aggressive.length){
-                return <h3> {aggressive.map(entry=> <div><i><span style={{"color":"red"}}>{entry[0]}</span>: {entry[1]/0.005}</i></div>)}</h3>
+                return <h3> {aggressive.map(entry=> <div><i><span style={{"color":"red"}}>{entry[0]}</span>: {entry[1]/0.0005}</i></div>)}</h3>
             }
         }
         return null;
