@@ -4,9 +4,8 @@ import styles from "./index.module.css";
 
 export default function Sentiment() {
     const [textInput, setTextInput] = useState("");    
-    //const [result, setResult] = useState("");
+    const [result, setResult] = useState("");
     const [previous, setPreviuos] = useState("");
-    const [result, setResult] = useState({"id":"modr-6B3hn8hg3w6GtJpkgx2b4HUeVfDWZ","model":"text-moderation-003","results":[{"categories":{"hate":false,"hate/threatening":false,"self-harm":false,"sexual":false,"sexual/minors":false,"violence":false,"violence/graphic":false},"category_scores":{"hate":0.000010499079508008435,"hate/threatening":0.0000022536453343491303,"self-harm":0.0000030562159736291505,"sexual":0.00013804239279124886,"sexual/minors":0.00000825680217531044,"violence":0.000056143300753319636,"violence/graphic":0.000009957013389794156},"flagged":false}]});    
     
     async function onSubmit(event) {
         event.preventDefault();
