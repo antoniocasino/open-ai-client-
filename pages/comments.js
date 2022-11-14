@@ -29,7 +29,7 @@ export default function Comments() {
           </Head>
     
           <main className={styles.main}>
-            <a href="/"><img src="/dog.png" className={styles.icon} /></a>
+            <a href="/"><img src="/home.png" className={styles.icon} /></a>
             <h3>Enter the code you want to be commented by</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3>Insersci un codice per cui generare il commento</h3>

@@ -31,7 +31,7 @@ export default function Conversation() {
           </Head>
     
           <main className={styles.main}>
-            <a href="/"><img src="/dog.png" className={styles.icon} /></a>
+            <a href="/"><img src="/home.png" className={styles.icon} /></a>
             <h3>Start a conversation with OpenAI</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3>Inizia una conversazione con OpenAI</h3>

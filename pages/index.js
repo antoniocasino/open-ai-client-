@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h3>OpenAI Examples</h3>
+        <h3>OpenAI Examples <img src="/home.png" className={styles.icon} /></h3>
         <ol>
           <li>
             <h4><a href="/images">Image generation</a></h4>

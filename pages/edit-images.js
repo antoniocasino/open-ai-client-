@@ -1,28 +1,48 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
+import path from "path";
 
-export default function Images() {
+export default function EditImages() {
   const [textInput, setTextInput] = useState("");
   const [previous, setPreviuos] = useState("");
   const [result, setResult] = useState();
+  const [filePath, setFilePath] = useState("");  
 
-  async function onSubmit(event) {
+  async function onSubmit(event) {      
+    console.log("filePath",filePath);
     event.preventDefault();
     if(!textInput) return;
-    const response = await fetch("/api/generate", {
+    const response = await fetch(`/api/edit-images`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text2img: textInput }),
+      },      
+      body: JSON.stringify({ text: textInput,filePath:filePath }),
     });
     const data = await response.json();
     setResult(data.result);
     setPreviuos(textInput);
     setTextInput("");
+  }  
+
+  function readFileURL(event) {
+    let input = event.target.files[0];      
+    console.log(input);
+    let response = fetch(`/api/upload-images?name=${input.name}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },      
+      body: input,
+    });
+    var base = path.resolve('.');
+    let newpath = base+"/temp/" + input.name;  
+    console.log(newpath);
+    setFilePath(newpath);      
   }
 
+  
   return (
     <div>
       <Head>
@@ -36,8 +56,9 @@ export default function Images() {
         <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
         <h3>Insersci un testo descrittivo per una immagine. OpenAi creerà l'immagine per te :)</h3>
         <form onSubmit={onSubmit}>
+          Upload the starting file: <input type="file" onChange={readFileURL}></input>
           <textarea type="text center" rows="3" cols="40" name="text2img"
-            placeholder="Enter a description text for an image"         
+            placeholder="Enter a description text"         
             value={textInput}
             onChange={(e) => setTextInput(e.target.value)}
           />
