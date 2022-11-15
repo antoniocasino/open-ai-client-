@@ -39,7 +39,10 @@ export default function Sentiment() {
               <textarea type="text" rows="3" cols="40" name="text2img"
                 placeholder="Enter a text. OpenAi will evaluate how aggressive the text is"         
                 value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
+                onChange={(e) => {
+                  setMyInput(e.target.value); 
+                  if(e.nativeEvent.inputType === "insertLineBreak") { onSubmit(e);}
+                }}
               />
               <input type="submit" value="Analyze sentiment in the sentence" />
             </form> 

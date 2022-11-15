@@ -37,7 +37,10 @@ export default function Comments() {
               <textarea type="text center" rows="15" cols="40" name="text2img"
                 placeholder="Enter the code you want to be commented by"         
                 value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
+                onChange={(e) => {
+                  setMyInput(e.target.value); 
+                  if(e.nativeEvent.inputType === "insertLineBreak") { onSubmit(e);}
+                }}
               />
               <input type="submit" value="Generate comments human readable" />
             </form>             

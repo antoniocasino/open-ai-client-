@@ -60,7 +60,10 @@ export default function EditImages() {
           <textarea type="text center" rows="3" cols="40" name="text2img"
             placeholder="Enter a description text"         
             value={textInput}
-            onChange={(e) => setTextInput(e.target.value)}
+            onChange={(e) => {
+              setMyInput(e.target.value); 
+              if(e.nativeEvent.inputType === "insertLineBreak") { onSubmit(e);}
+            }}
           />
           <input type="submit" value="Generate images" />
         </form>
