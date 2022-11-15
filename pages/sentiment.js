@@ -40,7 +40,7 @@ export default function Sentiment() {
                 placeholder="Enter a text. OpenAi will evaluate how aggressive the text is"         
                 value={textInput}
                 onChange={(e) => {
-                  setMyInput(e.target.value); 
+                  setTextInput(e.target.value); 
                   if(e.nativeEvent.inputType === "insertLineBreak") { onSubmit(e);}
                 }}
               />

@@ -38,7 +38,7 @@ export default function Comments() {
                 placeholder="Enter the code you want to be commented by"         
                 value={textInput}
                 onChange={(e) => {
-                  setMyInput(e.target.value); 
+                  setTextInput(e.target.value); 
                   if(e.nativeEvent.inputType === "insertLineBreak") { onSubmit(e);}
                 }}
               />

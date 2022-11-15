@@ -40,7 +40,7 @@ export default function Images() {
             placeholder="Enter a description text for an image"         
             value={textInput}
             onChange={(e) => {
-              setMyInput(e.target.value); 
+              setTextInput(e.target.value); 
               if(e.nativeEvent.inputType === "insertLineBreak") { onSubmit(e);}
             }}
           />
