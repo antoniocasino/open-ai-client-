@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 
 export default async function (req, res) {
   const response = await openai.createCompletion({
-    model: "code-davinci-002",
+    model: "code-davinci-003",
     prompt: req.body.text,
     temperature: 0,
     max_tokens: 64,
@@ -17,6 +17,6 @@ export default async function (req, res) {
     presence_penalty: 0.0,
     stop: ["\"\"\""],      
   }); 
-  console.log(response);
+  //console.log(response);
   res.status(200).json({result: response.data});
 }
