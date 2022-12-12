@@ -28,13 +28,14 @@ export default function Images() {
       <Head>
         <title>OpenAI Image Generation</title>
         <link rel="icon" href="/dog.png" />
+        <link rel="stylesheet" href="conversation.css"/>
       </Head>
 
       <main className={styles.main}>
-        <a href="/"><img src="/home.png" className={styles.icon} /></a>
-        <h3>Enter a description text for an image. OpenAi will generate the image for you :)</h3>
+        <a href="/"><img src="/home.png" style={{color:"white"}} className={styles.icon} /></a>
+        <h3 style={{color:"white"}}>Enter a description text for an image. OpenAi will generate the image for you :)</h3>
         <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
-        <h3>Insersci un testo descrittivo per una immagine. OpenAi creerà l'immagine per te :)</h3>
+        <h3 style={{color:"white"}}>Insersci un testo descrittivo per una immagine. OpenAi creerà l'immagine per te :)</h3>
         <form onSubmit={onSubmit}>
           <textarea type="text center" rows="3" cols="40" name="text2img"
             placeholder="Enter a description text for an image"         

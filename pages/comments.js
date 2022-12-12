@@ -25,14 +25,15 @@ export default function Comments() {
         <div>
           <Head>
             <title>OpenAI comment generation</title>
-            <link rel="icon" href="/dog.png" />           
+            <link rel="icon" href="/dog.png" /> 
+            <link rel="stylesheet" href="conversation.css"/>          
           </Head>
     
           <main className={styles.main}>
-            <a href="/"><img src="/home.png" className={styles.icon} /></a>
-            <h3>Enter the code you want to be commented by</h3>
+            <a href="/"><img src="/home.png" style={{color:"white"}} className={styles.icon} /></a>
+            <h3 style={{color:"white"}}>Enter the code you want to be commented by</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
-            <h3>Insersci un codice per cui generare il commento</h3>
+            <h3 style={{color:"white"}}>Insersci un codice per cui generare il commento</h3>
             <form onSubmit={onSubmit}>
               <textarea type="text center" rows="15" cols="40" name="text2img"
                 placeholder="Enter the code you want to be commented by"         

@@ -32,7 +32,7 @@ export default function Conversation() {
           </Head>
     
           <main className={styles.main}>
-            <a href="/"><img src="/home.png" className={styles.icon} /></a>
+            <a href="/" style={{color:"white"}}><img src="/home.png" className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Start a conversation with OpenAI Chat GPT</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Inizia una conversazione con OpenAI Chat GPT</h3>

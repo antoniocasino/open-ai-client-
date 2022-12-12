@@ -28,13 +28,14 @@ export default function Sentiment() {
           <Head>
             <title>OpenAI Sentiment Check</title>
             <link rel="icon" href="/dog.png" />
+            <link rel="stylesheet" href="conversation.css"/>
           </Head>
     
           <main className={styles.main}>
-            <a href="/"><img src="/home.png" className={styles.icon} /></a>
-            <h3>Enter a text. OpenAi will evaluate how aggressive the text is</h3>
+            <a href="/"><img src="/home.png" style={{color:"white"}} className={styles.icon} /></a>
+            <h3 style={{color:"white"}}>Enter a text. OpenAi will evaluate how aggressive the text is</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
-            <h3>Insersci un testo. OpenAi valuterà quanto il testo è aggressivo</h3>
+            <h3 style={{color:"white"}}>Insersci un testo. OpenAi valuterà quanto il testo è aggressivo</h3>
             <form onSubmit={onSubmit}>
               <textarea type="text" rows="3" cols="40" name="text2img"
                 placeholder="Enter a text. OpenAi will evaluate how aggressive the text is"         
