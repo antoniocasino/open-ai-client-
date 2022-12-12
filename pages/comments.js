@@ -25,7 +25,7 @@ export default function Comments() {
         <div>
           <Head>
             <title>OpenAI comment generation</title>
-            <link rel="icon" href="/dog.png" />
+            <link rel="icon" href="/dog.png" />           
           </Head>
     
           <main className={styles.main}>

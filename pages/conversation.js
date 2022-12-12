@@ -28,13 +28,14 @@ export default function Conversation() {
           <Head>
             <title>OpenAI Conversation</title>
             <link rel="icon" href="/dog.png" />
+            <link rel="stylesheet" href="conversation.css"/>
           </Head>
     
           <main className={styles.main}>
             <a href="/"><img src="/home.png" className={styles.icon} /></a>
-            <h3>Start a conversation with OpenAI</h3>
+            <h3 style={{color:"white"}}>Start a conversation with OpenAI Chat GPT</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
-            <h3>Inizia una conversazione con OpenAI</h3>
+            <h3 style={{color:"white"}}>Inizia una conversazione con OpenAI Chat GPT</h3>
             <form onSubmit={onSubmit}>
               <textarea type="text center" rows="3" cols="40" name="text2img"
                 placeholder="Start a conversation with OpenAI"         
@@ -58,9 +59,11 @@ export default function Conversation() {
         return null;
     }
     
-    function display(aiResponse,myQuestions){        
-      let tableBody = aiResponse.map((res,index)=> (<tr><td><textarea rows="3" readonly="readonly" cols="40" style={{border:"solid 2px purple"}} value={myQuestions[index]}></textarea></td><td><textarea rows="3" cols="40" readonly="readonly" value={res} style={{border:"solid 2px grey"}}></textarea></td></tr>));
-      return (<div id="myDiv" style={{"maxHeight":"27rem", "overflow-y":"scroll", "marginTop":"1rem"}}><table><tr><th>Myself</th><th>OpenAI</th></tr>{tableBody}</table></div>);
+    function display(aiResponse,myQuestions){              
+      //let tableBody = aiResponse.map((res,index)=> (<tr><td><textarea rows="3" readonly="readonly" cols="40" style={{border:"solid 2px purple"}} value={myQuestions[index]}></textarea></td><td><textarea rows="3" cols="40" readonly="readonly" value={res} style={{border:"solid 2px grey"}}></textarea></td></tr>));
+      //return (<div id="myDiv" style={{"maxHeight":"27rem", "overflow-y":"scroll", "marginTop":"1rem"}}><table><tr><th>Myself</th><th>OpenAI</th></tr>{tableBody}</table></div>);
+      let tableBody = aiResponse.map((res,index)=>(<><li className="message left"><p>{myQuestions[index]}</p></li><li class="message right"><p>{res}</p></li>)</>));
+      return (<div className="chat-container"><ul className="chat">{tableBody}</ul></div>);
     }
 
 }
