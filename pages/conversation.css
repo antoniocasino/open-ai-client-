@@ -83,6 +83,12 @@ h2 {
 	margin: 0;
 }
 
+.message img {
+	width: 80%;
+	height: 100%;
+	padding-left: 10%;
+}
+
 .text_input {
 	font-size: 16px;
 	position: absolute;
@@ -117,3 +123,4 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+

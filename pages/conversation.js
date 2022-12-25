@@ -60,8 +60,6 @@ export default function Conversation() {
     }
     
     function display(aiResponse,myQuestions){              
-      //let tableBody = aiResponse.map((res,index)=> (<tr><td><textarea rows="3" readonly="readonly" cols="40" style={{border:"solid 2px purple"}} value={myQuestions[index]}></textarea></td><td><textarea rows="3" cols="40" readonly="readonly" value={res} style={{border:"solid 2px grey"}}></textarea></td></tr>));
-      //return (<div id="myDiv" style={{"maxHeight":"27rem", "overflow-y":"scroll", "marginTop":"1rem"}}><table><tr><th>Myself</th><th>OpenAI</th></tr>{tableBody}</table></div>);
       let tableBody = aiResponse.map((res,index)=>(<><li className="message left"><p>{myQuestions[index]}</p></li><li class="message right"><p>{res}</p></li>)</>));
       return (<div className="chat-container"><ul className="chat">{tableBody}</ul></div>);
     }

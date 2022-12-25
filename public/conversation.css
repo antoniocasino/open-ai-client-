@@ -30,7 +30,7 @@ h2 {
 	border-radius: 2rem;
 	box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.7);
 	overflow: hidden;
-	padding: 1rem;
+	padding: 0.1rem;
 	position: relative;
 	width: 20rem;
 	max-width: 100%;
@@ -49,18 +49,18 @@ h2 {
 .message {
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 2rem;
-	box-shadow: 0rem 1rem 0rem 0rem rgba(0,0,0,0.5);
+	box-shadow: 0rem 1rem .0rem 0rem rgba(0,0,0,0.5);
 	position: relative;
 	margin-bottom: 2rem;
 }
 
 .message.left {
-	padding: 1rem 1.5rem 1rem 4rem;
+	padding: 0.1rem 0.5rem 0.1rem 2rem;
 }
 
 .message.right {
 	align-self: flex-end;
-	padding: 1rem 4rem 1rem 1.5rem;
+	padding: 0.1rem 2rem 0.1rem 0.5rem;
 }
 
 .logo {
@@ -83,13 +83,19 @@ h2 {
 	margin: 0;
 }
 
+.message img {
+	width: 80%;
+	height: 100%;
+	padding-left: 10%;
+}
+
 .text_input {
 	font-size: 16px;
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	padding: 1rem 1rem;
+	padding: 0.1rem 0.1rem;
 	width: 100%;
 }
 
@@ -117,3 +123,4 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+

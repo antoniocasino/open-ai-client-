@@ -3,24 +3,24 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Images() {
-  const [textInput, setTextInput] = useState("");
-  const [previous, setPreviuos] = useState("");
-  const [result, setResult] = useState();
+  const [myInput, setMyInput] = useState("");    
+  const [aiResponse, setAiResponse] = useState("");
+  const [myQuestions, setMyQuestions] = useState([]);    
 
   async function onSubmit(event) {
     event.preventDefault();
-    if(!textInput) return;
+    if(!myInput) return;
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ text2img: textInput }),
+      body: JSON.stringify({ text2img: myInput }),
     });
     const data = await response.json();
-    setResult(data.result);
-    setPreviuos(textInput);
-    setTextInput("");
+    setAiResponse([data.result,...aiResponse]);        
+    setMyQuestions([myInput,...myQuestions]);
+    setMyInput("");
   }
 
   return (
@@ -39,17 +39,21 @@ export default function Images() {
         <form onSubmit={onSubmit}>
           <textarea type="text center" rows="3" cols="40" name="text2img"
             placeholder="Enter a description text for an image"         
-            value={textInput}
+            value={myInput}
             onChange={(e) => {
-              setTextInput(e.target.value); 
+              setMyInput(e.target.value); 
               if(e.nativeEvent.inputType === "insertLineBreak") { onSubmit(e);}
             }}
           />
           <input type="submit" value="Generate images" />
         </form>
-        {!!result ? <h3 style={{color:"purple"}}>{previous}</h3> : null }
-        <div className={styles.result}><img src={result}/></div>
+        {!!aiResponse ? display(aiResponse,myQuestions) : null}
       </main>
     </div>
   );
+
+  function display(aiResponse,myQuestions){              
+    let tableBody = aiResponse.map((res,index)=>(<><li className="message left"><p>{myQuestions[index]}</p></li><li class="message right"><img src={res}/></li></>));
+    return (<div className="chat-container"><ul className="chat">{tableBody}</ul></div>);
+  }
 }
