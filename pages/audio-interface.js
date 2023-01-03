@@ -11,6 +11,7 @@ export default function AudioInterface() {
   const microphoneRefIta = useRef(null);
   const microphoneRefEng = useRef(null);
   const [aiResponse, setAiResponse] = useState("");
+  const [text, setText] = useState("");
   const [myQuestions, setMyQuestions] = useState([]); 
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
@@ -34,6 +35,7 @@ export default function AudioInterface() {
     setIsListening(false);
     ref.current.classList.remove("listening");
     SpeechRecognition.stopListening();
+    setText(transcript);
   };
   const handleReset = () => {
     resetTranscript();
@@ -80,7 +82,9 @@ export default function AudioInterface() {
         </div>
 
         <div className="microphone-result-container">
-          <div className="microphone-result-text">{transcript}</div>
+          <div className="microphone-result-text row">
+            <textarea style={{ width:"18rem", height:"3rem" , overflow:"auto"}} cols="35" rows="5" onChange={handleChange} value={text}></textarea>
+          </div>
         </div>
         <div className="microphone-wrapper">
           <div className="mircophone-container">
@@ -96,12 +100,16 @@ export default function AudioInterface() {
       </main>
     </div>
   );
+
+  function handleChange(event) {
+    setText(event.target.value);
+  }
  
   async function generateConversation(){
     let data = await generate("/api/conversation"); 
     setIsImage(false);
     setAiResponse([parseChoise(data),...aiResponse]);        
-    setMyQuestions([transcript,...myQuestions]);
+    setMyQuestions([text,...myQuestions]);
     resetTranscript();
   }
 

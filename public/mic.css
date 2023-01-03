@@ -86,9 +86,16 @@
   }
   .microphone-result-text {
     margin-bottom: 30px;
-    width: 18rem;
+    width: 32rem;
     height: 8rem;
     min-width: 18rem;
     min-height: 8rem;
+  }
+
+  .editText{
+    width: 4rem;
+    height: 4rem;
     background: white;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
   }
