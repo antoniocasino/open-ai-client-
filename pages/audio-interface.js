@@ -38,6 +38,14 @@ export default function AudioInterface() {
   const handleReset = () => {
     resetTranscript();
   };
+
+  const toggleClick = (lang,ref)=>{
+    if(isListening){
+      stopHandle(ref);
+    }else{
+      handleListing(lang,ref);
+    }
+  }
   
   return (
     <div>
@@ -57,16 +65,14 @@ export default function AudioInterface() {
             <div
               className="microphone-icon-container mic-ita"
               ref={microphoneRefIta}
-              onMouseUp={()=>stopHandle(microphoneRefIta)}
-              onMouseDown={()=>handleListing('it-IT',microphoneRefIta)}
+              onClick={()=>toggleClick('it-IT',microphoneRefIta)}
             >
               <img src="/mic-ita.png" className="microphone-icon" />
             </div>
             <div
               className="microphone-icon-container mic-eng"
               ref={microphoneRefEng}
-              onMouseUp={()=>stopHandle(microphoneRefEng)}
-              onMouseDown={()=>handleListing('en-GB',microphoneRefEng)}
+              onClick={()=>toggleClick('en-GB',microphoneRefEng)}
             >
               <img src="/mic-eng.png" className="microphone-icon" />
             </div>
