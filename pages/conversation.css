@@ -3,7 +3,7 @@
 }
 
 body {
-	background: url('https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg');
+	background: url('/public/bkg.jpg');
 	background-size: cover;
 	background-position: center	center;
 	
@@ -119,8 +119,8 @@ footer i {
     color: red;
 }
 
-footer a {
-    color: #3c97bf;
+h4 > a {
+    color: #3c97bf !important;
     text-decoration: none;
 }
 

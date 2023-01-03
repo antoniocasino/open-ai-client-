@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import React, { useRef, useState } from 'react';
 import styles from "./index.module.css";
 
 export default function Sentiment() {
@@ -15,7 +15,7 @@ export default function Sentiment() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ aggressiveText: textInput }),
+          body: JSON.stringify({ payload: textInput }),
         });
         const data = await response.json();
         setResult(data.result);        
@@ -32,7 +32,7 @@ export default function Sentiment() {
           </Head>
     
           <main className={styles.main}>
-            <a href="/"><img src="/home.png" style={{color:"white"}} className={styles.icon} /></a>
+            <a href="/"><img src="/home.png" style={{color:"white", background:"white"}} className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Enter a text. OpenAi will evaluate how aggressive the text is</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Insersci un testo. OpenAi valuterà quanto il testo è aggressivo</h3>

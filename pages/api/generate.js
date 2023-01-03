@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 
 export default async function (req, res) {
   const response = await openai.createImage({
-    prompt: req.body.text2img,
+    prompt: req.body.payload,
     n: 1,
     size: "256x256",
   });

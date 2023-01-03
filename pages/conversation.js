@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React from 'react';
 import { useState } from "react";
 import styles from "./index.module.css";
 
@@ -15,7 +16,7 @@ export default function Conversation() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ text: myInput }),
+          body: JSON.stringify({ payload: myInput }),
         });
         const data = await response.json();
         setAiResponse([parseChoise(data),...aiResponse]);        
@@ -32,7 +33,7 @@ export default function Conversation() {
           </Head>
     
           <main className={styles.main}>
-            <a href="/" style={{color:"white"}}><img src="/home.png" className={styles.icon} /></a>
+            <a href="/" style={{color:"white"}}><img src="/home.png" style={{color:"white", background:"white"}} className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Start a conversation with OpenAI Chat GPT</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Inizia una conversazione con OpenAI Chat GPT</h3>

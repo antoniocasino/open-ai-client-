@@ -1,11 +1,11 @@
 import Head from "next/head";
+import React from 'react';
 import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Comments() {
     const [textInput, setTextInput] = useState("");    
     const [result, setResult] = useState("");
-    const [previous, setPreviuos] = useState("");
     
     async function onSubmit(event) {
         event.preventDefault();
@@ -15,7 +15,7 @@ export default function Comments() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ text: textInput + "\n /* Here's what the above class is doing:" }),
+          body: JSON.stringify({ payload: textInput + "\n /* Here's what the above class is doing:" }),
         });
         const data = await response.json();
         setResult(data.result);         
@@ -30,7 +30,7 @@ export default function Comments() {
           </Head>
     
           <main className={styles.main}>
-            <a href="/"><img src="/home.png" style={{color:"white"}} className={styles.icon} /></a>
+            <a href="/"><img src="/home.png" style={{color:"white", background:"white"}} className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Enter the code you want to be commented by</h3>
             <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
             <h3 style={{color:"white"}}>Insersci un codice per cui generare il commento</h3>

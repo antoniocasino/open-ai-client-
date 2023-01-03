@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "./index.module.css";
+import React, { useRef, useState } from 'react';
 
 export default function Home() {
 
@@ -12,7 +13,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h3>OpenAI Examples <img src="/home.png" className={styles.icon} /></h3>
+        <h3>OpenAI Examples <img src="/home.png" style={{color:"white", background:"white"}} className={styles.icon} /></h3>
         <ul>
           <li>
             <h4><a href="/images">Image generation</a></h4>
@@ -24,7 +25,7 @@ export default function Home() {
             <h4><a href="/conversation">Conversation</a></h4>    
           </li>
           <li>
-            <h4><a href="/comments">Code comments generation</a></h4>    
+            <h4><a href="/audio-interface">Audio Interface</a></h4>
           </li>
         </ul>        
       </main>

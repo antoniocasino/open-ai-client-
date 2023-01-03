@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import React, { useRef, useState } from 'react';
 import styles from "./index.module.css";
 
 export default function Images() {
@@ -15,7 +15,7 @@ export default function Images() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ text2img: myInput }),
+      body: JSON.stringify({ payload: myInput }),
     });
     const data = await response.json();
     setAiResponse([data.result,...aiResponse]);        
@@ -32,7 +32,7 @@ export default function Images() {
       </Head>
 
       <main className={styles.main}>
-        <a href="/"><img src="/home.png" style={{color:"white"}} className={styles.icon} /></a>
+        <a href="/"><img src="/home.png" style={{color:"white", background:"white"}} className={styles.icon} /></a>
         <h3 style={{color:"white"}}>Enter a description text for an image. OpenAi will generate the image for you :)</h3>
         <a href="/"><img src="/ita.jpg" className={styles.icon} /></a>
         <h3 style={{color:"white"}}>Insersci un testo descrittivo per una immagine. OpenAi creerà l'immagine per te :)</h3>
