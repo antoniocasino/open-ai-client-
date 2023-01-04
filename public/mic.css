@@ -4,7 +4,6 @@
     align-items: center;
     width: 100vw;
     height: 3rem;
-    margin-right: 3rem;
     padding-right: 1rem;    
   }
   .mic-ita {
@@ -90,6 +89,7 @@
     height: 8rem;
     min-width: 18rem;
     min-height: 8rem;
+    margin-left: 3rem;
   }
 
   .editText{
