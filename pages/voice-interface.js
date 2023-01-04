@@ -2,11 +2,13 @@ import React, { useRef, useState } from 'react';
 import Head from "next/head";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import styles from "./index.module.css";
+import Loading from './Loading';
 
 export default function AudioInterface() {
    
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
   const [isImage, setIsImage] = useState(false);
   const microphoneRefIta = useRef(null);
   const microphoneRefEng = useRef(null);
@@ -56,12 +58,11 @@ export default function AudioInterface() {
         <link rel="icon" href="/dog.png" /> 
         <link rel="stylesheet" href="/conversation.css"/>          
         <link rel="stylesheet" href="/mic.css"/>
-      </Head>
-    
+      </Head>     
       <main className={styles.main}>  
         <a href="/"><img src="/home.png" style={{color:"white" , background:"white"}} className={styles.icon} /></a>
-        <h3 style={{color:"white"}}>Audio Interface</h3>
-       
+        <h3 style={{color:"white", marginBottom:"2rem"}}>Voice Interface</h3>
+
         <div className="microphone-wrapper">
           <div className="mircophone-container">
             <div
@@ -96,6 +97,7 @@ export default function AudioInterface() {
             </div>
           </div>
         </div>
+        {showLoader ? <Loading></Loading>:null}
         {!!aiResponse ? display(aiResponse,myQuestions) : null}
       </main>
     </div>
@@ -134,6 +136,7 @@ export default function AudioInterface() {
   }
   
   async function generate(url){
+    setShowLoader(true);
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -141,6 +144,7 @@ export default function AudioInterface() {
       },
       body: JSON.stringify({ payload: transcript }),
     });
+    setShowLoader(false);
     return response.json();
   }
 

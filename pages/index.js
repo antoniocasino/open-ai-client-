@@ -25,7 +25,7 @@ export default function Home() {
             <h4><a href="/conversation">Conversation</a></h4>    
           </li>
           <li>
-            <h4><a href="/audio-interface">Audio Interface</a></h4>
+            <h4><a href="/voice-interface">Voice Interface</a></h4>
           </li>
         </ul>        
       </main>
