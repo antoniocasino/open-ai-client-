@@ -9,7 +9,7 @@ export default function AudioInterface() {
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
-  const [isImage, setIsImage] = useState(false);
+  const [isImage, setIsImage] = useState([]);
   const microphoneRefIta = useRef(null);
   const microphoneRefEng = useRef(null);
   const [aiResponse, setAiResponse] = useState("");
@@ -19,7 +19,7 @@ export default function AudioInterface() {
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return (
       <div className="mircophone-container">
-        Browser is not Support Speech Recognition.
+        Browser does not Support Speech Recognition.
       </div>
     );
   }
@@ -109,7 +109,7 @@ export default function AudioInterface() {
  
   async function generateConversation(){
     let data = await generate("/api/conversation"); 
-    setIsImage(false);
+    setIsImage([false,...isImage]);
     setAiResponse([parseChoise(data),...aiResponse]);        
     setMyQuestions([text,...myQuestions]);
     resetTranscript();
@@ -117,7 +117,7 @@ export default function AudioInterface() {
 
   async function generateImage(){
     let data = await generate("/api/generate");
-    setIsImage(true);
+    setIsImage([true,...isImage]);
     setAiResponse([data.result,...aiResponse]);        
     setMyQuestions([transcript,...myQuestions]);
     resetTranscript();
@@ -131,7 +131,8 @@ export default function AudioInterface() {
   }
 
   function display(aiResponse,myQuestions){              
-    let tableBody = aiResponse.map((res,index)=>(<><li className="message left"><p>{myQuestions[index]}</p></li><li class="message right">{ isImage ? (<img src={res}/>) : (<p>{res}</p>) }</li>)</>));
+    let tableBody = aiResponse.map((res,index)=>
+    (<><li className="message left" key={index}><p>{myQuestions[index]}</p></li><li className="message right">{ isImage[index] ? (<img src={res}/>) : (<p>{res}</p>) }</li>)</>));
     return (<div className="chat-container"><ul className="chat">{tableBody}</ul></div>);
   }
   
