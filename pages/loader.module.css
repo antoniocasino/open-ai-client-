@@ -3,7 +3,8 @@
   border-top: 16px solid #67696aa1; /* Blue */
   border-radius: 50%;
   width: 120px;
-  height: 120px;
+  height: 120px;  
+	margin-left: 44%;	
   animation: spin 2s linear infinite;
 }
   
