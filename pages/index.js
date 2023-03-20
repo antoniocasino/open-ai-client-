@@ -3,6 +3,7 @@ import Head from "next/head";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import styles from "./index.module.css";
 import Loading from './Loading';
+import TextReader, {useTextReader} from "react-text2speech";
 
 export default function AudioInterface() {
    
@@ -14,6 +15,10 @@ export default function AudioInterface() {
   const [aiResponse, setAiResponse] = useState([]);
   const [text, setText] = useState("");
   const [myQuestions, setMyQuestions] = useState([]); 
+  const { bindReader, handlers, state } = useTextReader();
+  const { play, pause, showReader, hideReader, minimizeReader, maximizeReader } = handlers;
+  const { isReading, isLoading, isVisible } = state;  
+  const [node, setNode] = useState(null);
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return (
@@ -105,8 +110,9 @@ export default function AudioInterface() {
 
   function handleChange(event) {
     setText(event.target.value);
-  }
- 
+  }   
+  
+
   async function generateConversation(){
     let data = await generate("/api/chat");     
     setAiResponse([parseChoise(data),...aiResponse]);        
@@ -130,7 +136,7 @@ export default function AudioInterface() {
 
   function display(aiResponse,myQuestions){              
     let tableBody = aiResponse.map((res,index)=>
-    (<div key={index} style={{display: "grid"}} className="row"><li className="message left"><p>{myQuestions[index]}</p></li><li className="message right">{ res.isImage ? (<img src={res.body}/>) : (<p>{res.text}</p>) }</li>)</div>));
+    (<div key={index} style={{display: "grid"}} className="row"><li className="message left"><p>{myQuestions[index]}</p></li><li className="message right">{ res.isImage ? (<img src={res.body}/>) : (<><p ref={setNode}>{res.text}</p>{node && <TextReader textContainer={node} bindReader={bindReader} options={{ language: 'it' }} />}</>) }</li>)</div>));
     return (<div className="chat-container"><ul className="chat">{tableBody}</ul></div>);
   }
   
