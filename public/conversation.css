@@ -20,15 +20,40 @@ body {
 .title{
 	color: white;
 	margin-bottom: 2rem;
-	margin-left: 28%;
-	max-width: 50%;
-}
-.mircophone-container , .microphone-result-container, .microphone-wrapperr{
-	margin-bottom: 0.5rem;
-	margin-left: 23%;
-	max-width: 50%;
 }
 
+
+.microphone-icon{
+	height: 3rem;
+	width: 3rem;
+	margin-right: 1rem;
+	align-items: center;
+}
+
+.microphone-icon-container.listening::before {
+    content: "";
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #ffffff81;
+    position: absolute;        
+	margin-top: 1.5rem;	
+	margin-left: 1.5rem;	
+    transform:translate(-50%, -50%) scale(1.4);
+    border-radius: 50%;
+    animation: listening infinite 1.5s;
+    background: white;
+  }
+  
+  @keyframes listening{
+    0%{
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100%{
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.4);
+    }
+  }
 
 h2 {
   	text-shadow: 1px 1px 2px rgba(0,0,0,1);

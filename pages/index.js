@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Head from "next/head";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import styles from "./index.module.css";
 import Loading from './Loading';
 import TextReader, {useTextReader} from "react-text2speech";
 
@@ -11,14 +10,14 @@ export default function AudioInterface() {
   const [isListening, setIsListening] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const microphoneRefIta = useRef(null);
-  const microphoneRefEng = useRef(null);
   const [aiResponse, setAiResponse] = useState([]);
   const [text, setText] = useState("");
   const [myQuestions, setMyQuestions] = useState([]); 
   const { bindReader, handlers, state } = useTextReader();
-  const { play, pause, showReader, hideReader, minimizeReader, maximizeReader } = handlers;
-  const { isReading, isLoading, isVisible } = state;  
+  const { play, pause, showReader } = handlers;
+	const { isReading, isLoading, isVisible } = state;
   const [node, setNode] = useState(null);
+
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return (
@@ -35,7 +34,7 @@ export default function AudioInterface() {
     SpeechRecognition.startListening({
       language: lang,
       continuous: true,
-    });
+    });    
   };
   const stopHandle = (ref) => {
     setIsListening(false);
@@ -57,48 +56,28 @@ export default function AudioInterface() {
   
   return (
     <div>
+      <meta author="Antonio Casino"></meta>
+      <meta description="BOT basato su OPEN AI"></meta>
       <Head>
-        <title>OpenAI comment generation</title>       
-        <link rel="stylesheet" href="/conversation.css"/>          
-        <link rel="stylesheet" href="/mic.css"/>
+        <title>BOT basato su OPEN AI</title>       
+        <link rel="stylesheet" href="/conversation.css"/>                  
       </Head>     
-      <div>                  
-        <div className="microphone-wrapper">    
-          <div>
-            <h2 className='title'>
-              Start a conversation with Chat GPT 3.5
-            </h2>
-          </div>      
-          <div className="mircophone-container">                   
-            <div
-              className="microphone-icon-container mic-ita"
-              ref={microphoneRefIta}
-              onClick={()=>toggleClick('it-IT',microphoneRefIta)}
-            >
-              <img src="/mic-ita.png" className="microphone-icon" />
-            </div>
-            <div
-              className="microphone-icon-container mic-eng"
-              ref={microphoneRefEng}
-              onClick={()=>toggleClick('en-GB',microphoneRefEng)}
-            >
-              <img src="/mic-eng.png" className="microphone-icon" />
-            </div>
-          </div>
-        </div>
-
-        <div className="microphone-result-container">
-          <div className="microphone-result-text row">
-            <textarea style={{ width:"18rem", height:"3rem" , overflow:"auto"}} cols="35" rows="5" onChange={handleChange} value={text}></textarea>
-          </div>
-        </div>
+                      
+      <div className="chat-app-container" style={{textAlign:"center"}}>          
+          <h2 className='title'>
+            BOT basato su OPEN AI
+          </h2>          
+      
+        <div className="microphone-result-text">       
+            <textarea style={{ width:"80%", height:"3rem" , overflow:"auto"}} cols="40" rows="5" onChange={handleChange} value={text}></textarea>            
+            <span className="microphone-icon-container mic-ita" ref={microphoneRefIta} onClick={()=>toggleClick('it-IT',microphoneRefIta)}><img src="/mic2.png" style={{height:"3rem"}}  /></span>
+        </div>             
+      
         <div className="microphone-wrapper">
-          <div className="mircophone-container">
-            <div className="microphone-icon-container generate-image">
-              <img src="/image.jpg" className="microphone-icon" title="generate an image" onClick={generateImage}/> 
-            </div>
-            <div className="microphone-icon-container generate-conversation">
-              <img src="/conversation.jpg" className="microphone-icon" title="start a conversation" onClick={generateConversation}/> 
+          <div>
+            <div className="generate-image">
+              <img src="/image.jpg"  className="microphone-icon" title="crea una immagine" onClick={generateImage}/> 
+              <img src="/conversation.jpg" className="microphone-icon" title="chatta" onClick={generateConversation}/> 
             </div>
           </div>
         </div>
@@ -133,15 +112,15 @@ export default function AudioInterface() {
     }
     return null;
   }
-
-  function display(aiResponse,myQuestions){              
+  
+  function display(aiResponse,myQuestions){       
     let tableBody = aiResponse.map((res,index)=>
-    (<div key={index} style={{display: "grid"}} className="row"><li className="message left"><p>{myQuestions[index]}</p></li><li className="message right">{ res.isImage ? (<img src={res.body}/>) : (<><p ref={setNode}>{res.text}</p>{node && <TextReader textContainer={node} bindReader={bindReader} options={{ language: 'it' }} />}</>) }</li>)</div>));
+    (<div key={index} style={{display: "grid"}} className="row"><li className="message left"><p>{myQuestions[index]}</p></li><li className="message right">{ res.isImage ? (<img src={res.body}/>) : (<><p ref={setNode} onClick={()=>play()}>{res.text}</p>{node && <TextReader textContainer={node} bindReader={bindReader} options={{ language: 'it' }} />}</>) }</li>)</div>));
     return (<div className="chat-container"><ul className="chat">{tableBody}</ul></div>);
   }
   
   async function generate(url){
-    setShowLoader(true);
+    setShowLoader(true);    
     const response = await fetch(url, {
       method: "POST",
       headers: {
