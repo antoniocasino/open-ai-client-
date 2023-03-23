@@ -115,7 +115,11 @@ export default function AudioInterface() {
   
   function display(aiResponse,myQuestions){       
     let tableBody = aiResponse.map((res,index)=>
-    (<div key={index} style={{display: "grid"}} className="row"><li className="message left"><p>{myQuestions[index]}</p></li><li className="message right">{ res.isImage ? (<img src={res.body}/>) : (<><p ref={setNode} onClick={()=>play()}>{res.text}</p>{node && <TextReader textContainer={node} bindReader={bindReader} options={{ language: 'it' }} />}</>) }</li>)</div>));
+    (<div key={index} style={{display: "grid"}} className="row">
+      <li className="message left"><p>{myQuestions[index]}</p></li>
+      <li className="message right">{ res.isImage ? (<img src={res.body}/>) : 
+      (<><p ref={setNode} onClick={()=>play()}>{res.text}</p>
+        {node && index==aiResponse.length-1 && <TextReader textContainer={node} bindReader={bindReader} options={{ language: 'it' }} />}</>) }</li>)</div>));
     return (<div className="chat-container"><ul className="chat">{tableBody}</ul></div>);
   }
   
